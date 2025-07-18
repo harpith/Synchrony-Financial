@@ -136,18 +136,44 @@ const ChatWindow = ({ chat, addMessage }) => {
     return "🤖 I'm here to help! Please ask a technical question or upload a document.";
   };
 
-  // Call GPT API (hardcoded dummy)
+  // // Call GPT API (hardcoded dummy)
+  // const callGptApi = async (userMessage) => {
+  //   // Simulate bot reply with hardcoded logic
+  //   const q = userMessage.toLowerCase();
+  //   if (q.includes("api")) {
+  //     return "🔐 To authenticate with our API, use JWT tokens in the Authorization header as 'Bearer {token}'.";
+  //   } else if (q.includes("deploy")) {
+  //     return "🚀 Deployment uses Docker containers on AWS ECS. Each service has a Dockerfile.";
+  //   } else if (q.includes("test")) {
+  //     return "🧪 For testing, use Jest and React Testing Library for frontend, and Mocha for backend.";
+  //   }
+  //   return "🤖 I'm here to help! Please ask a technical question or upload a document.";
+  // };
+
   const callGptApi = async (userMessage) => {
-    // Simulate bot reply with hardcoded logic
     const q = userMessage.toLowerCase();
-    if (q.includes("api")) {
-      return "🔐 To authenticate with our API, use JWT tokens in the Authorization header as 'Bearer {token}'.";
-    } else if (q.includes("deploy")) {
-      return "🚀 Deployment uses Docker containers on AWS ECS. Each service has a Dockerfile.";
-    } else if (q.includes("test")) {
-      return "🧪 For testing, use Jest and React Testing Library for frontend, and Mocha for backend.";
+
+    if (q.includes("confidential information")) {
+      return "🔒 Confidential Information includes trade secrets, software, designs, methods, strategies, and any sensitive company data, and must not be disclosed during or after the internship.";
+    } else if (q.includes("duration") || q.includes("term of agreement")) {
+      return "📅 The agreement lasts through the internship and continues for 12 months after termination.";
+    } else if (q.includes("intellectual property")) {
+      return "💡 Any intellectual property or invention made during your internship related to company business belongs to Navatej Technologies.";
+    } else if (q.includes("non-solicitation")) {
+      return "🚫 During your internship, you are not allowed to solicit customers or employees of Navatej Technologies.";
+    } else if (q.includes("governing law") || q.includes("jurisdiction")) {
+      return "⚖️ This agreement is governed by Indian law and legal matters are to be resolved in the courts of Hyderabad.";
+    } else if (q.includes("notice period")) {
+      return "📨 Both you and the employer must give a 15-day written notice before ending the internship.";
+    } else if (q.includes("modifications")) {
+      return "📝 Any modifications to this agreement must be in writing and mutually agreed upon.";
+    } else if (q.includes("assignment of agreement")) {
+      return "🔁 You cannot assign this agreement to someone else. However, Navatej Technologies may assign it.";
+    } else if (q.includes("publication")) {
+      return "📰 You must get written consent from Navatej before publishing anything related to your internship work.";
     }
-    return "🤖 I'm here to help! Please ask a technical question or upload a document.";
+
+    return "🤖 I'm here to help! Please ask a question related to the internship agreement.";
   };
 
   // Handle sending a message
