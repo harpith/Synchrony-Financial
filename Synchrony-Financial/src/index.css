@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+/* Root app layout */
+.app-root {
+  display: grid;
+  grid-template-columns: minmax(180px, 350px) 1fr;
+  height: 100vh;
+  width: 100vw;
+  background: #111;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+/* Sidebar: resizable and full height */
+.sidebar-custom {
+  min-width: 180px;
+  max-width: 350px;
+  width: 250px;
+  resize: horizontal;
+  overflow: auto;
+  height: 100vh;
+  background: #000;
+  color: #fff;
+  border-right: 1px solid #222;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sidebar chat item hover */
+.sidebar-chat-item {
+  transition: background 0.2s;
+}
+.sidebar-chat-item:hover {
+  background: #333 !important;
+}
+
+/* Chat window: fills remaining space */
+.chat-window-custom {
+  height: 100vh;
+  width: 100%;
+  background: #111;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .app-root {
+    grid-template-columns: 1fr;
+  }
+  .sidebar-custom {
+    position: absolute;
+    z-index: 10;
+    width: 70vw;
+    max-width: 90vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.5);
+    transition: transform 0.3s;
+    transform: translateX(-100%);
+  }
+  .sidebar-custom.open {
+    transform: translateX(0);
+  }
+  .chat-window-custom {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+/* Sidebar toggle button for mobile */
+.sidebar-toggle-btn {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 20;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Chat window input and buttons */
+.chat-window-custom .form-control {
+  background: #222 !important;
+  color: #fff !important;
+  border: 1px solid #444 !important;
+}
+.chat-window-custom .form-control::placeholder {
+  color: #bbb;
+}
+.chat-window-custom .btn {
+  box-shadow: none !important;
+}
+.chat-window-custom .input-group-text {
+  background: #222 !important;
+  color: #fff !important;
+  border: none !important;
+}
+.chat-window-custom .bg-secondary {
+  background: #222 !important;
+  color: #fff !important;
+}
+.chat-window-custom .bg-dark {
+  background: #111 !important;
+  color: #fff !important;
+}
+
+.sidebar-custom,
+.chat-window-custom {
+  margin: 0;
+  padding: 0;
+}
