@@ -285,7 +285,7 @@ const ChatWindow = ({ chat, addMessage }) => {
           onClick={handleFileClick}
           title="Upload Document"
         >
-          <i className="fas fa-paperclip"></i>
+          <i className="fas fa-paperclip text-white"></i>
         </span>
         <input
           type="file"
