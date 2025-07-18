@@ -1,10 +1,20 @@
 # Synchrony-Financial
-<<<<<<< HEAD
 
-## hello harpith Bhai
+# cd Synchrony-Financial
+npm install
+npm run dev
 
-#cd Synchrony-Financial
-# npm install
-# npm run dev
-=======
->>>>>>> bb3e0a81870f6b94aa42da232425d0ebff950fea
+# backend setup and dependencies
+cd Synchrony-Financial.backend
+
+npm init -y
+
+# dependencies
+npm install express mongoose dotenv cors jsonwebtoken bcrypt cloudinary cookie-parser multer mongoose-aggregate-paginate-v2
+
+# dev dependencies
+npm install --save-dev nodemon prettier @types/node
+
+# .env
+PORT = portNo
+
