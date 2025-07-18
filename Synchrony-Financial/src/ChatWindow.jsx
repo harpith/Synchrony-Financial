@@ -108,3 +108,5 @@ const ChatWindow = ({ chat, addMessage }) => {
 };
 
 export default ChatWindow;
+
+
