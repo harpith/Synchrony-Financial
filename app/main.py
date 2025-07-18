@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from gpt import ask_gpt  # ✅ importing from gpt.py
+from app.gpt import ask_gpt
+
 
 app = FastAPI()
 
