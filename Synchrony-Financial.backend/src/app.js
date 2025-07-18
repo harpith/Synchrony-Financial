@@ -21,3 +21,11 @@ app.use(express.urlencoded({
 app.use(express.static("public"));
 
 app.use(cookieParser());
+
+app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.send('API is running');
+});
+
+export { app };
