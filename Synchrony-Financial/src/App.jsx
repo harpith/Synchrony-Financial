@@ -20,6 +20,15 @@ const App = () => {
     setChats(chats.map(chat => chat.id === id ? { ...chat, title: newTitle } : chat))
   }
 
+  // Add message to active chat
+  const addMessage = (msg) => {
+    setChats(chats.map(chat =>
+      chat.id === activeChatId
+        ? { ...chat, messages: [...chat.messages, msg] }
+        : chat
+    ))
+  }
+
   return (
     <div className="app-root">
       <Sidebar
@@ -31,6 +40,7 @@ const App = () => {
       <ChatWindow
         chat={chats.find(c => c.id === activeChatId)}
         updateTitle={(title) => updateTitle(activeChatId, title)}
+        addMessage={addMessage}
       />
     </div>
   )

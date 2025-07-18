@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 
-const ChatWindow = ({ chat }) => {
+const ChatWindow = ({ chat, addMessage }) => {
   const fileInputRef = useRef();
   const [input, setInput] = useState("");
 
@@ -11,14 +11,25 @@ const ChatWindow = ({ chat }) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      console.log("Uploaded file:", file.name);
-      // You can handle the file upload logic here
+      addMessage({
+        type: "file",
+        name: file.name,
+        size: file.size,
+        time: new Date().toLocaleTimeString(),
+      });
     }
   };
 
   const handleSend = () => {
-    console.log("User message:", input);
-    setInput("");
+    if (input.trim()) {
+      addMessage({
+        type: "text",
+        text: input,
+        time: new Date().toLocaleTimeString(),
+      });
+      setInput("");
+      // Here you can call GPT API and add its response as a message
+    }
   };
 
   return (
@@ -37,7 +48,24 @@ const ChatWindow = ({ chat }) => {
               <strong>FAQ:</strong> Welcome! Upload a file or ask a question.
             </div>
           </div>
-          {/* Add more messages here */}
+          {chat?.messages?.map((msg, idx) =>
+            msg.type === "text" ? (
+              <div key={idx} className="align-self-end">
+                <div className="bg-primary text-white rounded-pill shadow-sm px-3 py-2">
+                  <span>{msg.text}</span>
+                  <span className="ms-2 small text-light">{msg.time}</span>
+                </div>
+              </div>
+            ) : (
+              <div key={idx} className="align-self-end">
+                <div className="bg-info text-dark rounded-pill shadow-sm px-3 py-2">
+                  <i className="fas fa-file-alt me-2"></i>
+                  <span>{msg.name} ({Math.round(msg.size/1024)} KB)</span>
+                  <span className="ms-2 small text-dark">{msg.time}</span>
+                </div>
+              </div>
+            )
+          )}
         </div>
       </div>
 
@@ -67,6 +95,7 @@ const ChatWindow = ({ chat }) => {
           placeholder="Type your message..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyDown={e => e.key === "Enter" && handleSend()}
         />
 
         {/* Send button */}
