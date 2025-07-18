@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import documentRoutes from "./routes/document.routes.js";
+import chatRoutes from "./routes/chat.routes.js";
 
 const app = express();
 
@@ -27,5 +29,9 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('API is running');
 });
+
+app.use("/api/document", documentRoutes);
+app.use("/api/chat", chatRoutes);
+
 
 export { app };
