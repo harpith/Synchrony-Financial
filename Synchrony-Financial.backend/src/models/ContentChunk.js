@@ -20,4 +20,4 @@ const contentChunkSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model('ContentChunk', contentChunkSchema);
+export const ContentChunk = mongoose.model('ContentChunk', contentChunkSchema);
